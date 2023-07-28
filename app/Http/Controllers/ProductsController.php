@@ -9,6 +9,7 @@ class ProductsController extends Controller
 {
     public function get()
     {
+        return csrf_token();
         return Products::get();
     }
 
