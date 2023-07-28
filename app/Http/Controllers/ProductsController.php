@@ -24,29 +24,18 @@ class ProductsController extends Controller
             'product_price' => 'required|max:255',
             'product_desc' => 'required',
         ]);
-        return Products::create($data);
+        try {
+            Products::create($data);
+            return response()->json("Data is Create Successfully", 200);
+        } catch (\Throwable $th) {
+            return response()->json("Data is Not Create Successfully", 200);
+            //throw $th;
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Products  $products
-     * @return \Illuminate\Http\Response
-     */
     public function show(Products $products)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Products  $products
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Products $products)
-    {
-        //
+        return $products->first();
     }
 
     /**
@@ -58,7 +47,13 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Products $products)
     {
-        //
+        $data = [
+            'product_name' => $request->product_name,
+            'product_price' => $request->product_price,
+            'product_desc' => $request->product_desc,
+        ];
+        $products->update($data);
+        return response()->json("Data is Updated Successfully", 200);
     }
 
     /**
@@ -69,6 +64,7 @@ class ProductsController extends Controller
      */
     public function destroy(Products $products)
     {
-        //
+        $products->delete();
+        return response()->json("Data is Updated Successfully", 200);
     }
 }

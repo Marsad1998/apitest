@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/get', 'App\Http\Controllers\ProductsController@get'); // Get All Products
-Route::post('/create', 'App\Http\Controllers\ProductsController@create'); // Create Products
-Route::post('/update/{id}', 'App\Http\Controllers\ProductsController@update'); // Update
-Route::post('/fetch_edit/{id}', 'App\Http\Controllers\ProductsController@edit'); // Edit 
-Route::delete('/delete/{id}', 'App\Http\Controllers\ProductsController@delete'); // Delete Product
+Route::get('/fetch/{products}', 'App\Http\Controllers\ProductsController@show'); // Get Single Products / or for Edit
+Route::post('/create', 'App\Http\Controllers\ProductsController@create'); // Create Products 
+Route::post('/update/{products}', 'App\Http\Controllers\ProductsController@update'); // Update
+Route::delete('/delete/{products}', 'App\Http\Controllers\ProductsController@delete'); // Delete Product
